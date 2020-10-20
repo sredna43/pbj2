@@ -1,4 +1,4 @@
-# This script will likely handle movement of the PeanutButter character
+# This script is technically a state machine for PBCharacter
 
 extends "res://scripts/player_constants.gd"
 

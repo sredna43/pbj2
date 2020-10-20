@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "KinematicBody2D",
 "class": "PlayerConstants",
 "language": "GDScript",
 "path": "res://scripts/player_constants.gd"
@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="PBJ 2"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

@@ -1,4 +1,4 @@
-# This will likely handle movement of the Jelly Character
+# This is the state machine for JCharacter
 
 extends "res://scripts/player_constants.gd"
 
