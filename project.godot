@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://characters/pb/pb_controller.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerFSM",
+"language": "GDScript",
+"path": "res://characters/shared/states/player_fsm.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://characters/shared/states/state.gd"
+} ]
 _global_script_class_icons={
-
+"Player": "",
+"PlayerFSM": "",
+"PlayerState": ""
 }
 
 [application]
@@ -33,6 +50,11 @@ pb_jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
+pb_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
 pb_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
@@ -51,6 +73,11 @@ pb_attack={
 j_jump={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+ ]
+}
+j_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
 j_left={
