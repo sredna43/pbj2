@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/characters/shared/states/run.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/shared/states/idle.gd" type="Script" id=2]
+[ext_resource path="res://scenes/characters/shared/states/jump.gd" type="Script" id=3]
+[ext_resource path="res://scenes/characters/shared/states/air.gd" type="Script" id=4]
+[ext_resource path="res://scenes/characters/shared/states/player_fsm.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/pb-placeholder.png" type="Texture" id=6]
+[ext_resource path="res://scenes/characters/shared/controller.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[node name="PBPlayer" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 7 )
+pb_or_j = "pb"
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="JumpTimer" type="Timer" parent="Timers"]
+wait_time = 0.06
+one_shot = true
+
+[node name="FloorTimer" type="Timer" parent="Timers"]
+wait_time = 0.06
+one_shot = true
+
+[node name="States" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Idle" type="Node2D" parent="States"]
+script = ExtResource( 2 )
+
+[node name="Run" type="Node2D" parent="States"]
+script = ExtResource( 1 )
+
+[node name="Jump" type="Node2D" parent="States"]
+script = ExtResource( 3 )
+jump_power = 1000.0
+
+[node name="Air" type="Node2D" parent="States"]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
