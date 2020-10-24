@@ -34,7 +34,7 @@ _global_script_class_icons={
 
 config/name="PBJ 2"
 config/description="Peanut Butter and Jelly need to be brought back together"
-run/main_scene="res://MainMenu.tscn"
+run/main_scene="res://scenes/levels/TestLevel.tscn"
 config/icon="res://icon.png"
 
 [display]

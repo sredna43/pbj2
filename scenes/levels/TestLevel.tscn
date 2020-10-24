@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/characters/pb/PeanutButter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/characters/j/Jelly.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/ruler.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Player
@@ -10,24 +10,23 @@ script/source = "extends Player
 "
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 640.646, 19.4816 )
+extents = Vector2( 640.646, 20 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24, 64 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="JPlayer" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1104, 600 )
-
 [node name="PeanutButter" parent="." instance=ExtResource( 1 )]
-position = Vector2( 216, 592 )
+position = Vector2( 104, 552 )
 script = SubResource( 1 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2( 0, 680 )
+position = Vector2( 0, 704 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="ColorRect" type="ColorRect" parent="Floor"]
@@ -44,13 +43,12 @@ position = Vector2( 640, 20 )
 shape = SubResource( 2 )
 
 [node name="LWall" type="StaticBody2D" parent="."]
-position = Vector2( 32, -296 )
+position = Vector2( 8, -296 )
 rotation = 1.5708
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="ColorRect" type="ColorRect" parent="LWall"]
@@ -67,13 +65,12 @@ position = Vector2( 640, 20 )
 shape = SubResource( 2 )
 
 [node name="RWall" type="StaticBody2D" parent="."]
-position = Vector2( 1296, -360 )
+position = Vector2( 640, -376 )
 rotation = 1.5708
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="ColorRect" type="ColorRect" parent="RWall"]
@@ -89,7 +86,68 @@ __meta__ = {
 position = Vector2( 640, 20 )
 shape = SubResource( 2 )
 
-[node name="HUD_j" parent="." instance=ExtResource( 3 )]
+[node name="RWall2" type="StaticBody2D" parent="."]
+position = Vector2( 1312, -384 )
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="HUD_pb" parent="." instance=ExtResource( 3 )]
-player = 1
+[node name="ColorRect" type="ColorRect" parent="RWall2"]
+margin_right = 1280.0
+margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RWall2"]
+position = Vector2( 640, 20 )
+shape = SubResource( 2 )
+
+[node name="ruler" type="Sprite" parent="."]
+position = Vector2( 0, 536 )
+texture = ExtResource( 4 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 16, 664 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 24, -24 )
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+margin_top = -88.0
+margin_right = 48.0
+margin_bottom = 40.0
+color = Color( 0.952941, 0.682353, 0.682353, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 200, 664 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 24, -24 )
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+margin_top = -88.0
+margin_right = 48.0
+margin_bottom = 40.0
+color = Color( 0.952941, 0.682353, 0.682353, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]

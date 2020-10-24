@@ -18,8 +18,8 @@ func init(p: KinematicBody2D):
     active_state = states.idle
     active_state.enter(player)
 
-func run():
-    var next_state_tag = active_state.run(player)
+func run(delta: float):
+    var next_state_tag = active_state.run(player, delta)
     if next_state_tag:
         change_state(next_state_tag)
 

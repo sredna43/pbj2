@@ -3,10 +3,13 @@ class_name Player
 signal hud
 
 # Player movement
-export var gravity : float = 60
-export var run_speed : float = 500
-export var midair_speed : float = 500
-export var acceleration : float = 100
+export var jump_power : float = 47100
+export var gravity : float = 50
+export var run_speed : float = 400
+export var midair_speed : float = 25
+export var air_resistance : float = 0.05
+export var acceleration : float = 50
+export var friction : float = 0.8
 var velocity : Vector2 = Vector2.ZERO
 var vx: float = 0 setget _set_vx, _get_vx
 var vy: float = 0 setget _set_vy, _get_vy
@@ -25,12 +28,15 @@ var jumping : bool = false setget ,_get_jumping
 # State Machine
 onready var state_machine : PlayerFSM = $States
 
+# AnimationPlayer
+onready var anim : AnimationPlayer = $Sprite/AnimationPlayer
+
 func _ready():
     state_machine.init(self)
 
 func _physics_process(_delta: float) -> void:
     update_inputs()
-    state_machine.run()
+    state_machine.run(_delta)
     emit_signal("hud", "%s x: %s \t y: %s \t state: %s" % [pb_or_j, velocity.x, velocity.y, state_machine.active_state.tag])
 
 func update_inputs() -> void:
@@ -41,19 +47,26 @@ func update_inputs() -> void:
         int(Input.is_action_pressed("%s_down" % pb_or_j))
         - int(Input.is_action_pressed("%s_jump" % pb_or_j))
     )
-    if Input.is_action_pressed("%s_jump" % pb_or_j):
+    if Input.is_action_just_pressed("%s_jump" % pb_or_j):
         jump_timer.start()
     if is_on_floor():
+        velocity.y = 0
         floor_timer.start()
 
 func move():
-    velocity = move_and_slide(velocity, Vector2.UP, true)
+    if horizontal < 0:
+        $Sprite.flip_h = true
+    if horizontal > 0:
+        $Sprite.flip_h = false
+    velocity = move_and_slide(velocity, Vector2.UP, false)
 
-func apply_gravity(g : float):
+func apply_gravity(g : float, _delta : float):
     velocity += Vector2.DOWN * g
 
 func play(animation : String):
-    pass
+    if anim.current_animation == animation:
+        return
+    anim.play(animation)
 
 # Set-Get functions
 func _get_vx():

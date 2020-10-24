@@ -2,9 +2,8 @@
 
 extends PlayerState
 
-export var jump_power : float = 700
 
-func run(player: KinematicBody2D):
-    player.vy = -jump_power
+func run(player: KinematicBody2D, delta: float):
+    player.vy = -player.jump_power * delta
     player.move()
     return "air"
