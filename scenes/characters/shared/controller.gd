@@ -3,9 +3,9 @@ class_name Player
 signal hud
 
 # Player movement
-export var jump_power : float = 47100
+export var jump_power : float = 47200
 export var gravity : float = 50
-export var run_speed : float = 400
+export var run_speed : float = 350
 export var midair_speed : float = 25
 export var air_resistance : float = 0.05
 export var acceleration : float = 50
