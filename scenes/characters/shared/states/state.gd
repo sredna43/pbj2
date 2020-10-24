@@ -9,8 +9,6 @@ export var player_to_control : String = ""
 func _ready():
     tag = name.to_lower()
 
-# Player State
-
 func enter(player: KinematicBody2D):
     player.play(tag)
 
