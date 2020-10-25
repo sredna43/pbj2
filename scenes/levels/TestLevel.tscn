@@ -4,13 +4,13 @@
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sprites/ruler.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 48 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 640.646, 20 )
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Player
 
 "
@@ -29,7 +29,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/JumpBlock"]
 position = Vector2( 24, -8 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Level/JumpBlock"]
 margin_top = -56.0
@@ -48,7 +48,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/JumpBlock2"]
 position = Vector2( 24, -8 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="Level/JumpBlock2"]
 margin_top = -56.0
@@ -156,4 +156,4 @@ pb_or_j = "j"
 
 [node name="PeanutButter" parent="." instance=ExtResource( 1 )]
 position = Vector2( 104, 552 )
-script = SubResource( 1 )
+script = SubResource( 3 )

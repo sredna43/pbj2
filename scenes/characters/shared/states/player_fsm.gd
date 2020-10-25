@@ -5,27 +5,29 @@ class_name PlayerFSM
 
 var states: Dictionary = {}
 var active_state: PlayerState
+var state_stack = []
 var player: KinematicBody2D
 
 func init_states():
-    for state in get_children():
-        if state.tag:
-            states[state.tag] = state
+	for state in get_children():
+		if state.tag:
+			states[state.tag] = state
 
 func init(p: KinematicBody2D):
-    player = p
-    init_states()
-    active_state = states.idle
-    active_state.enter(player)
+	player = p
+	init_states()
+	active_state = states.idle
+	active_state.enter(player)
 
 func run(delta: float):
-    var next_state_tag = active_state.run(player, delta)
-    if next_state_tag:
-        change_state(next_state_tag)
+	var next_state_tag = active_state.run(player, delta)
+	if next_state_tag:
+		change_state(next_state_tag)
 
 func change_state(next_state_tag: String):
-    var next_state = states.get(next_state_tag)
-    if next_state:
-        active_state.exit(player)
-        active_state = next_state
-        active_state.enter(player)
+	var next_state = states.get(next_state_tag)
+	if next_state:
+		state_stack[0] = active_state
+		active_state.exit(player)
+		active_state = next_state
+		active_state.enter(player)
