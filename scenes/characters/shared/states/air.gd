@@ -23,4 +23,6 @@ func run(player: KinematicBody2D, delta: float):
         return "idle" if player.horizontal == 0 else "run"
     if player.grounded and player.jumping:
         return "jump"
+    if player.get_wall_slide() and player.velocity.y > 0:
+        return "slide"
     return null

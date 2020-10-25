@@ -17,6 +17,5 @@ func run(player: KinematicBody2D, delta: float):
     return null
 
 func exit(player: KinematicBody2D):
-    # if player and player.anim:
-    #     player.anim.clear_queue()
-    pass
+    if player and player.anim:
+        player.anim.clear_queue()

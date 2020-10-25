@@ -3,6 +3,9 @@
 extends PlayerState
 
 func run(player: KinematicBody2D, delta: float):
+    
+    var on_wall = player.get_wall_slide()
+    
     # Accelerate the player to the run speed
     if abs(player.horizontal) > 0 and abs(player.vx + player.horizontal) < player.run_speed:
         player.vx += player.horizontal * player.acceleration

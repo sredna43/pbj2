@@ -1,18 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/characters/shared/states/run.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/shared/states/idle.gd" type="Script" id=2]
 [ext_resource path="res://scenes/characters/shared/states/jump.gd" type="Script" id=3]
 [ext_resource path="res://scenes/characters/shared/states/air.gd" type="Script" id=4]
 [ext_resource path="res://scenes/characters/shared/states/player_fsm.gd" type="Script" id=5]
-[ext_resource path="res://assets/sprites/pb-idle-run.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/pb-spritesheet.png" type="Texture" id=6]
 [ext_resource path="res://scenes/characters/shared/controller.gd" type="Script" id=7]
 [ext_resource path="res://scenes/characters/pb/animations/Idle.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/characters/pb/animations/run.tres" type="Animation" id=9]
 [ext_resource path="res://scenes/characters/pb/animations/air.tres" type="Animation" id=10]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 9.33728, 21.0298 )
+[ext_resource path="res://scenes/characters/shared/states/slide.gd" type="Script" id=11]
+[ext_resource path="res://scenes/characters/pb/animations/slide.tres" type="Animation" id=12]
 
 [sub_resource type="Animation" id=2]
 resource_name = "jump"
@@ -30,9 +29,19 @@ tracks/0/keys = {
 "values": [ 2, 0, 6 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 9.80219
+height = 19.4101
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 16.6798 )
+
 [node name="PBPlayer" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
 pb_or_j = "pb"
 
 [node name="Timers" type="Node2D" parent="."]
@@ -60,18 +69,40 @@ script = ExtResource( 3 )
 [node name="Air" type="Node2D" parent="States"]
 script = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="Slide" type="Node2D" parent="States"]
+script = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.530331, -0.0883884 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
-hframes = 10
-frame = 6
+flip_h = true
+hframes = 15
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/air = ExtResource( 10 )
 anims/idle = ExtResource( 8 )
 anims/jump = SubResource( 2 )
 anims/run = ExtResource( 9 )
+anims/slide = ExtResource( 12 )
+
+[node name="Rays" type="Node2D" parent="."]
+position = Vector2( 0, -13 )
+
+[node name="RCast" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( 23, 0 )
+collision_mask = 8
+
+[node name="LCast" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( -23, 0 )
+collision_mask = 8
+
+[node name="FloorCollision" type="CollisionShape2D" parent="."]
+position = Vector2( -0.75, 11.207 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="CeilingCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )

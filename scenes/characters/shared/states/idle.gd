@@ -5,6 +5,7 @@ extends PlayerState
 func run(player: KinematicBody2D, delta: float):
     if abs(player.vx) > 0:
         player.vx = 0
+        player.move()
     if player.vy > 0:
         player.vy = 0
     # Fall through the floor

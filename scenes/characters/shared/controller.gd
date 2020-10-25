@@ -3,8 +3,10 @@ class_name Player
 signal hud
 
 # Player movement
-export var jump_power : float = 47200
-export var gravity : float = 50
+export var terminal_vel : float = 700
+export var jump_power : float = 363
+export var slide_friction : float = 70
+export var gravity : float = 40
 export var run_speed : float = 350
 export var midair_speed : float = 25
 export var air_resistance : float = 0.05
@@ -20,10 +22,13 @@ var horizontal : int = 0
 var vertical : int = 0
 onready var jump_timer : Timer = $Timers/JumpTimer
 onready var floor_timer : Timer = $Timers/FloorTimer
+onready var l_wall : RayCast2D = $Rays/LCast
+onready var r_wall : RayCast2D = $Rays/RCast
 
 # Player position
 var grounded : bool = false setget ,_get_grounded
 var jumping : bool = false setget ,_get_jumping
+onready var floor_collision : CollisionShape2D = $FloorCollision
 
 # State Machine
 onready var state_machine : PlayerFSM = $States
@@ -54,14 +59,33 @@ func update_inputs() -> void:
         floor_timer.start()
 
 func move():
-    if horizontal < 0:
+    update_look_direction()
+    velocity = move_and_slide(velocity, Vector2.UP, true)
+
+func update_look_direction(flip : int = 0):
+    if flip == -1:
         $Sprite.flip_h = true
-    if horizontal > 0:
+        floor_collision.position.x = -0.75
+    if flip == 1:
         $Sprite.flip_h = false
-    velocity = move_and_slide(velocity, Vector2.UP, false)
+        floor_collision.position.x = 0.75
+    if horizontal < 0 and not get_wall_slide():
+        $Sprite.flip_h = true
+        floor_collision.position.x = -0.75
+    if horizontal > 0 and not get_wall_slide():
+        $Sprite.flip_h = false
+        floor_collision.position.x = 0.75
 
 func apply_gravity(g : float, _delta : float):
-    velocity += Vector2.DOWN * g
+    if velocity.y <= terminal_vel:
+        velocity += Vector2.DOWN * g
+    
+func get_wall_slide() -> int:
+    if l_wall.is_colliding():
+        return 1
+    if r_wall.is_colliding():
+        return -1
+    return 0
 
 func play(animation : String):
     if anim.current_animation == animation:
