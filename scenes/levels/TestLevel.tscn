@@ -83,7 +83,7 @@ position = Vector2( 640, 20 )
 shape = SubResource( 2 )
 
 [node name="MiddleWall" type="StaticBody2D" parent="Level"]
-position = Vector2( 640, -376 )
+position = Vector2( 1120.99, -383.4 )
 rotation = 1.5708
 collision_layer = 15
 collision_mask = 0

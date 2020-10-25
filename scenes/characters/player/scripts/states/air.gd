@@ -19,6 +19,8 @@ func run(player: KinematicBody2D, delta: float):
 		player.vx = lerp(player.vx, 0, player.air_resistance)
 	player.apply_gravity(player.gravity, delta)
 	player.move()
+	if player.shooting:
+		return "shoot"
 	if player.is_on_floor() and player.velocity.y == 0:
 		return "idle" if player.horizontal == 0 else "run"
 	if player.grounded and player.jumping:

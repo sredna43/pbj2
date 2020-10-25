@@ -21,11 +21,7 @@ func init(p: KinematicBody2D):
 
 func run(delta: float):
 	var next_state_tag
-	if Input.is_action_just_pressed("%s_attack" % player.pb_or_j) and player.attack_timer.is_stopped():
-		player.attack_timer.start()
-		next_state_tag = "shoot"
-	else:
-		next_state_tag = active_state.run(player, delta)
+	next_state_tag = active_state.run(player, delta)
 	if next_state_tag:
 		change_state(next_state_tag)
 

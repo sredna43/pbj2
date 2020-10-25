@@ -11,6 +11,8 @@ func run(player: KinematicBody2D, delta: float):
 	player.apply_gravity(player.gravity, delta)
 	player.move()
 	
+	if player.shooting:
+		return "shoot"
 	if not player.is_on_floor():
 		return "air"
 	if player.horizontal == 0:
