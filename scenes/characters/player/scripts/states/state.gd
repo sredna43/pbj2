@@ -13,7 +13,7 @@ func enter(player: KinematicBody2D):
 	player.play(tag)
 
 # warning-ignore:unused_argument
-func run(player: KinematicBody2D, delta: float):
+func run(player: KinematicBody2D, _delta: float):
 	return null
 
 func exit(player: KinematicBody2D):

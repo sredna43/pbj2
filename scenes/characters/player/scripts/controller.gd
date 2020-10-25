@@ -47,10 +47,6 @@ func _physics_process(_delta: float) -> void:
 	emit_signal("hud", "%s x: %s \t y: %s \t state: %s" % [pb_or_j, velocity.x, velocity.y, state_machine.active_state.tag])
 
 func update_inputs() -> void:
-	if Input.is_action_just_pressed("%s_attack" % pb_or_j) and attack_timer.is_stopped():
-		attack_timer.start()
-		emit_signal("shoot", self)
-		play("attack")
 	horizontal = (
 		int(Input.is_action_pressed("%s_right" % pb_or_j))
 		 - int(Input.is_action_pressed("%s_left" % pb_or_j)))

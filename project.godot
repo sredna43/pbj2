@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://scenes/characters/shared/controller.gd"
+"path": "res://scenes/characters/player/scripts/controller.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerFSM",
 "language": "GDScript",
-"path": "res://scenes/characters/shared/states/player_fsm.gd"
+"path": "res://scenes/characters/player/scripts/states/player_fsm.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerState",
 "language": "GDScript",
-"path": "res://scenes/characters/shared/states/state.gd"
+"path": "res://scenes/characters/player/scripts/states/state.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
