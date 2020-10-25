@@ -5,7 +5,7 @@ class_name PlayerFSM
 
 var states: Dictionary = {}
 var active_state: PlayerState
-var state_stack = []
+var previous_state : String = ""
 var player: KinematicBody2D
 
 func init_states():
@@ -27,7 +27,7 @@ func run(delta: float):
 func change_state(next_state_tag: String):
 	var next_state = states.get(next_state_tag)
 	if next_state:
-		state_stack[0] = active_state
+		previous_state = active_state.tag
 		active_state.exit(player)
 		active_state = next_state
 		active_state.enter(player)

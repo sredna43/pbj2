@@ -3,7 +3,6 @@
 [resource]
 resource_name = "air"
 length = 0.001
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
