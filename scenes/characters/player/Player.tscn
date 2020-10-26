@@ -40,7 +40,7 @@ height = 19.4101
 extents = Vector2( 10, 16.6798 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 0
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_group_": true
