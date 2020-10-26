@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/characters/player/animations/run.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/characters/player/animations/air.tres" type="Animation" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/characters/player/scripts/states/run.gd" type="Script" id=12]
 [ext_resource path="res://assets/sprites/pb-spritesheet.png" type="Texture" id=13]
 [ext_resource path="res://scenes/characters/player/scripts/states/shoot.gd" type="Script" id=14]
+[ext_resource path="res://scenes/characters/player/scripts/Spawner.gd" type="Script" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "jump"
@@ -119,3 +120,9 @@ shape = SubResource( 2 )
 
 [node name="CeilingCollision" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
+
+[node name="BulletLocation" type="Position2D" parent="."]
+position = Vector2( 5, 4 )
+
+[node name="Spawner" type="Node2D" parent="BulletLocation"]
+script = ExtResource( 15 )
