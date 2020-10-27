@@ -7,15 +7,15 @@ export var tag : String = ""
 export var player_to_control : String = ""
 
 func _ready():
-    tag = name.to_lower()
+	tag = name.to_lower()
 
 func enter(player: KinematicBody2D):
-    player.play(tag)
+	player.play(tag)
 
 # warning-ignore:unused_argument
-func run(player: KinematicBody2D, delta: float):
-    return null
+func run(player: KinematicBody2D, _delta: float):
+	return null
 
 func exit(player: KinematicBody2D):
-    if player and player.anim:
-        player.anim.clear_queue()
+	if player and player.anim:
+		player.anim.clear_queue()

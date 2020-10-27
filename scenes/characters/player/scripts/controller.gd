@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Player
 signal hud
+signal shoot
 
 # Player movement
 export var terminal_vel : float = 700
@@ -24,6 +25,12 @@ onready var jump_timer : Timer = $Timers/JumpTimer
 onready var floor_timer : Timer = $Timers/FloorTimer
 onready var l_wall : RayCast2D = $Rays/LCast
 onready var r_wall : RayCast2D = $Rays/RCast
+
+# Shooting
+var shooting : bool = false setget , _get_shooting
+onready var attack_timer : Timer = $Timers/AttackTimer
+onready var attack_cooldown : Timer = $Timers/AttackCooldown
+onready var bullet_spawner : Node2D = $BulletLocation/Spawner
 
 # Player position
 var grounded : bool = false setget ,_get_grounded
@@ -52,6 +59,10 @@ func update_inputs() -> void:
         int(Input.is_action_pressed("%s_down" % pb_or_j))
         - int(Input.is_action_pressed("%s_jump" % pb_or_j))
     )
+    if Input.is_action_just_pressed("%s_attack" % pb_or_j) and attack_cooldown.is_stopped():
+        attack_timer.start()
+        attack_cooldown.start()
+        bullet_spawner.fire(-1 if $Sprite.flip_h else 1)
     if Input.is_action_just_pressed("%s_jump" % pb_or_j):
         jump_timer.start()
     if is_on_floor():
@@ -116,3 +127,7 @@ func _get_grounded():
 func _get_jumping():
     jumping = not jump_timer.is_stopped()
     return jumping
+
+func _get_shooting():
+    shooting = not attack_timer.is_stopped()
+    return shooting
