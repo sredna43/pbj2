@@ -13,7 +13,9 @@ func _physics_process(delta: float) -> void:
     velocity.y += 40
     if is_on_wall():
         $Sprite.visible = false
+        collision_layer = 0
         velocity = Vector2.ZERO
+        explosion.direction.x = direction
         explosion.emitting = true
         get_tree().create_timer(explosion.lifetime).connect("timeout", self, "queue_free")
     else:

@@ -4,11 +4,11 @@
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sprites/ruler.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24, 48 )
-
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 640.646, 20 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 48 )
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Player
@@ -16,49 +16,12 @@ script/source = "extends Player
 "
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( -1.25989, -23.9385 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 player = "PeanutButter"
 
 [node name="Level" type="Node2D" parent="."]
-
-[node name="JumpBlock" type="StaticBody2D" parent="Level"]
-position = Vector2( 200, 664 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/JumpBlock"]
-position = Vector2( 24, -8 )
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="Level/JumpBlock"]
-margin_top = -56.0
-margin_right = 48.0
-margin_bottom = 40.0
-color = Color( 0.952941, 0.682353, 0.682353, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="JumpBlock2" type="StaticBody2D" parent="Level"]
-position = Vector2( 16, 664 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/JumpBlock2"]
-position = Vector2( 24, -8 )
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="Level/JumpBlock2"]
-margin_top = -56.0
-margin_right = 48.0
-margin_bottom = 40.0
-color = Color( 0.952941, 0.682353, 0.682353, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RWall" type="StaticBody2D" parent="Level"]
 position = Vector2( 1312, -384 )
@@ -127,7 +90,7 @@ position = Vector2( 640, 20 )
 shape = SubResource( 2 )
 
 [node name="Floor" type="StaticBody2D" parent="Level"]
-position = Vector2( 0, 704 )
+position = Vector2( -3.31683, 583.136 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
@@ -147,14 +110,52 @@ __meta__ = {
 position = Vector2( 640, 20 )
 shape = SubResource( 2 )
 
-[node name="ruler" type="Sprite" parent="Level"]
-position = Vector2( 0, 536 )
+[node name="JumpBlock2" type="StaticBody2D" parent="Level/Floor"]
+position = Vector2( 16, -40 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/JumpBlock2"]
+position = Vector2( 24, -8 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="Level/Floor/JumpBlock2"]
+margin_top = -56.0
+margin_right = 48.0
+margin_bottom = 40.0
+color = Color( 0.952941, 0.682353, 0.682353, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JumpBlock" type="StaticBody2D" parent="Level/Floor"]
+position = Vector2( 200, -40 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/JumpBlock"]
+position = Vector2( 24, -8 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="Level/Floor/JumpBlock"]
+margin_top = -56.0
+margin_right = 48.0
+margin_bottom = 40.0
+color = Color( 0.952941, 0.682353, 0.682353, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ruler" type="Sprite" parent="Level/Floor"]
+position = Vector2( 8, -360 )
 texture = ExtResource( 4 )
 
 [node name="Jelly" parent="." instance=ExtResource( 1 )]
-position = Vector2( 448, 552 )
+position = Vector2( 436.661, 172.764 )
 pb_or_j = "j"
 
 [node name="PeanutButter" parent="." instance=ExtResource( 1 )]
-position = Vector2( 104, 552 )
+position = Vector2( 119.119, 233.24 )
 script = SubResource( 3 )
