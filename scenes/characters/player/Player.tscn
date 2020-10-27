@@ -14,7 +14,7 @@
 [ext_resource path="res://scenes/characters/player/scripts/states/run.gd" type="Script" id=12]
 [ext_resource path="res://assets/sprites/pb-spritesheet.png" type="Texture" id=13]
 [ext_resource path="res://scenes/characters/player/scripts/states/shoot.gd" type="Script" id=14]
-[ext_resource path="res://scenes/characters/player/scripts/Spawner.gd" type="Script" id=15]
+[ext_resource path="res://scenes/characters/player/scripts/spawner.gd" type="Script" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "jump"
