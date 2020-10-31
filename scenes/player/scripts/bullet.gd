@@ -2,12 +2,11 @@ extends KinematicBody2D
 
 var velocity : Vector2 = Vector2.ZERO
 var direction : int = 0
-var remove = false
-onready var explosion : CPUParticles2D = $Explosion    
+onready var explosion : CPUParticles2D = $Explosion
 
 func _ready() -> void:
     set_as_toplevel(true)
-    velocity.y = -40
+    velocity.y = -120
     
 func _physics_process(delta: float) -> void:
     velocity.y += 40
@@ -19,6 +18,7 @@ func _physics_process(delta: float) -> void:
         explosion.emitting = true
         get_tree().create_timer(explosion.lifetime).connect("timeout", self, "queue_free")
     else:
+        $Sprite.rotate(direction)
         velocity.x = 650 * direction
         if is_on_floor():
             velocity.y = -300

@@ -9,22 +9,34 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "EnemyFSM",
+"language": "GDScript",
+"path": "res://scenes/enemies/enemy_state_machine/enemy_fsm.gd"
+}, {
+"base": "Node",
+"class": "EnemyState",
+"language": "GDScript",
+"path": "res://scenes/enemies/enemy_state_machine/enemy_state.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://scenes/characters/player/scripts/controller.gd"
+"path": "res://scenes/player/scripts/controller.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerFSM",
 "language": "GDScript",
-"path": "res://scenes/characters/player/scripts/states/player_fsm.gd"
+"path": "res://scenes/player/scripts/states/player_fsm.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerState",
 "language": "GDScript",
-"path": "res://scenes/characters/player/scripts/states/state.gd"
+"path": "res://scenes/player/scripts/states/state.gd"
 } ]
 _global_script_class_icons={
+"EnemyFSM": "",
+"EnemyState": "",
 "Player": "",
 "PlayerFSM": "",
 "PlayerState": ""
@@ -39,8 +51,9 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/height=576
-window/stretch/mode="viewport"
+window/size/width=800
+window/size/height=450
+window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
 [input]

@@ -1,6 +1,8 @@
+# Controls the spawner for player bullets
+
 extends Node2D
 
-var bullet = preload("res://scenes/characters/player/Bullet.tscn")
+var bullet = preload("res://scenes/player/Bullet.tscn")
 onready var location = get_parent()
 
 func fire(direction : int):

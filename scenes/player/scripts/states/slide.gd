@@ -2,6 +2,10 @@
 
 extends PlayerState
 
+func enter(player: KinematicBody2D):
+    player.vy = 10
+    .enter(player)
+
 func run(player: KinematicBody2D, delta: float):
     player.update_look_direction(player.get_wall_slide())
     player.apply_gravity(player.gravity / player.slide_friction, delta)

@@ -31,6 +31,7 @@ var shooting : bool = false setget , _get_shooting
 onready var attack_timer : Timer = $Timers/AttackTimer
 onready var attack_cooldown : Timer = $Timers/AttackCooldown
 onready var bullet_spawner : Node2D = $BulletLocation/Spawner
+var no_shoot_states = ['slide']
 
 # Player position
 var grounded : bool = false setget ,_get_grounded
@@ -59,7 +60,7 @@ func update_inputs() -> void:
         int(Input.is_action_pressed("%s_down" % pb_or_j))
         - int(Input.is_action_pressed("%s_jump" % pb_or_j))
     )
-    if Input.is_action_just_pressed("%s_attack" % pb_or_j) and attack_cooldown.is_stopped():
+    if Input.is_action_just_pressed("%s_attack" % pb_or_j) and attack_cooldown.is_stopped() and not state_machine.active_state.tag in no_shoot_states:
         attack_timer.start()
         attack_cooldown.start()
         bullet_spawner.fire(-1 if $Sprite.flip_h else 1)

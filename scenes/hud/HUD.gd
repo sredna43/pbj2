@@ -1,3 +1,5 @@
+# Mostly used for debugging, controls the HUD
+
 extends CanvasLayer
 
 export var player : String = "PBPlayer"

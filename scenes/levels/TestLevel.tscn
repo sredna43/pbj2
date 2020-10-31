@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/characters/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/knife/Knife.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sprites/ruler.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 640.646, 20 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 48 )
 
 [sub_resource type="GDScript" id=3]
@@ -24,7 +25,7 @@ player = "PeanutButter"
 [node name="Level" type="Node2D" parent="."]
 
 [node name="RWall" type="StaticBody2D" parent="Level"]
-position = Vector2( 1312, -384 )
+position = Vector2( 814.562, -354.034 )
 rotation = 1.5708
 collision_layer = 3
 collision_mask = 3
@@ -43,10 +44,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/RWall"]
 position = Vector2( 640, 20 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="MiddleWall" type="StaticBody2D" parent="Level"]
-position = Vector2( 1120.99, -383.4 )
+position = Vector2( 427.274, -378.905 )
 rotation = 1.5708
 collision_layer = 15
 collision_mask = 0
@@ -59,16 +60,17 @@ margin_right = 1280.0
 margin_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color( 0.756863, 0.223529, 0.223529, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/MiddleWall"]
 position = Vector2( 640, 20 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="LWall" type="StaticBody2D" parent="Level"]
-position = Vector2( 8, -296 )
+position = Vector2( 19.9864, -450.326 )
 rotation = 1.5708
 collision_layer = 3
 collision_mask = 3
@@ -87,10 +89,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/LWall"]
 position = Vector2( 640, 20 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Floor" type="StaticBody2D" parent="Level"]
-position = Vector2( -3.31683, 583.136 )
+position = Vector2( -19.7982, 452.783 )
 collision_layer = 3
 collision_mask = 3
 __meta__ = {
@@ -108,7 +110,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor"]
 position = Vector2( 640, 20 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="JumpBlock2" type="StaticBody2D" parent="Level/Floor"]
 position = Vector2( 16, -40 )
@@ -118,7 +120,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/JumpBlock2"]
 position = Vector2( 24, -8 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Level/Floor/JumpBlock2"]
 margin_top = -56.0
@@ -137,7 +139,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/JumpBlock"]
 position = Vector2( 24, -8 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Level/Floor/JumpBlock"]
 margin_top = -56.0
@@ -153,9 +155,12 @@ position = Vector2( 8, -360 )
 texture = ExtResource( 4 )
 
 [node name="Jelly" parent="." instance=ExtResource( 1 )]
-position = Vector2( 436.661, 172.764 )
+position = Vector2( 614.96, 196.737 )
 pb_or_j = "j"
 
 [node name="PeanutButter" parent="." instance=ExtResource( 1 )]
 position = Vector2( 119.119, 233.24 )
 script = SubResource( 3 )
+
+[node name="Knife" parent="." instance=ExtResource( 2 )]
+position = Vector2( 323.745, 416.244 )
